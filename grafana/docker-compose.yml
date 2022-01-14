@@ -1,0 +1,20 @@
+version: '3.9'
+
+services:
+  grafana:   
+    build: .
+    user: "472"
+    volumes:
+      - ~/docker_data/grafana:/var/lib/grafana
+    environment:
+      VIRTUAL_HOST: monitoring.emeal.ch
+      LETSENCRYPT_HOST: monitoring.emeal.ch
+      LETSENCRYPT_EMAIL: info@emeal.ch      
+    networks:
+      - nginx_network
+
+networks:
+ nginx_network:
+   external:
+      name: nginx_network
+
